@@ -103,11 +103,11 @@ class Login:
                 raise Exception(
                     "load cookies from files fatal. Please check the format")
 
-    def _request_get(self, url: str, params=None, allow_redirects=True) -> requests.Response:
+    def _request_get(self, url: str, headers=None, params=None, allow_redirects=True) -> requests.Response:
         res = requests.get(
             url,
             params=params,
-            headers=self.headers,
+            headers=self.headers if headers is None else headers,
             cookies=self.cookies,
             allow_redirects=allow_redirects,
         )
