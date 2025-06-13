@@ -144,7 +144,7 @@ class Login:
             "username": self.email,
             "password": self.passwd,
         }
-        res = self._request_post(url=url, data=data, allow_redirects=False)
+        res = self._request_post(url=url, data=data, allow_redirects=True)
         if res.status_code == 400:
             raise Exception("wrong username or password")
 
@@ -156,7 +156,7 @@ class Login:
             "Content-Type": "application/x-www-form-urlencoded",
             "Origin": "https://huggingface.co/chat"
         }
-        res = self._request_post(url, headers=headers, allow_redirects=False)
+        res = self._request_get(url, headers=headers, allow_redirects=True)
         if res.status_code == 200:
             # location = res.headers.get("Location", None)
             location = res.json()["location"]
